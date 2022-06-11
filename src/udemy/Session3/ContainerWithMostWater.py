@@ -13,14 +13,22 @@ class Solution:
     """"
     >>> res = Solution()
 
-    >>> res.maxArea([4,2,3,4])
-    3
+    >>> res.maxArea([])
+    0
+
+    >>> res.maxArea([1])
+    0
 
     >>> res.maxArea([1,8,6,2,5,4,8,3,7])
     49
     """
     def maxArea(self, height: List[int]) -> int:
-        return 3
+        max_value = 0
+        for i in range(len(height)-1):
+            for j in range(i+1, len(height)):
+                area = min(height[i], height[j]) * (j-i)
+                max_value = area if area > max_value else max_value
+        return max_value
 
 
 if __name__ == '__main__':
